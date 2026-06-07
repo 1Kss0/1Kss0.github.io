@@ -3,8 +3,11 @@ name: Deploy Hexo Blog
 on:
   push:
     branches: [master]
-  # 允许手动触发
   workflow_dispatch:
+
+# 允许 GITHUB_TOKEN 写入 main 分支
+permissions:
+  contents: write
 
 jobs:
   build-and-deploy:
@@ -42,4 +45,4 @@ jobs:
           force_orphan: true
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
-          commit_message: 'Deploy: ${{ github.event.head_commit.message }}'
+          commit_message: Deploy blog from source
